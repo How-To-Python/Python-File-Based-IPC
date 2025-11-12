@@ -1,4 +1,4 @@
-# File-Based IPC Demonstration
+# 📝 File-Based IPC Demonstration
 
 *A simple demonstration of **file-based Inter-Process Communication (IPC)** using a shared JSON file.*
 
@@ -12,7 +12,7 @@
 - **JSON Serialization** data is stored in human-readable JSON format, making it easy to debug
 - **Atomic Updates** the writer reads the current state before updating to avoid overwriting data
 
-### How it works
+### 🪄 How it works
 - **Shared State File:** `ipc_state.json`
 - processes communicate by reading and writing to this shared file
 - **Reader** `reader.py`:
