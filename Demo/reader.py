@@ -24,3 +24,60 @@ from pathlib import Path# for file path handling
 # print(f"Shared state file path: {SHARED_STATE_FILE}")
 #==========================================================================================================================
 SHARED_STATE_FILE = Path(__file__).parent / "ipc_state.json"
+
+# ipc_state.json: you do not have to create the file beforehand, the writer process will create it when it writes the first time
+# but you can create an empty file manually if you want to avoid the FileNotFoundError on the first read attempt
+
+
+#==========================================================================================================================
+# TODO: Implement a function to initialize the reader process
+#==========================================================================================================================
+def initialize_reader():
+    print("Reader process initialized.")
+    #......Additional initialization logic 
+
+#==========================================================================================================================
+# TODO: Implement a function to read the shared state from the file and handle the case where the file does not exist yet
+#   the function should:
+#   try to open and read the JSON file
+#   parse the JSON data into a Python dictionary
+#   return the dictionary
+#   if the file does not exist, it should:
+#   Handle the FileNotFoundError exception
+#   print a message indicating that the shared state file was not found
+#   because the writer process may not have created it yet
+#==========================================================================================================================
+def read_shared_state():
+    #==========================================================================================================================
+    # `with`:
+    #  is a context manager that ensures the file is properly closed after its suite finishes
+    # the context manager handles opening and closing the file automatically
+    # a context manager is a construct that allows for setup and teardown actions around a block of code
+    # it is commonly used for resource management, such as file handling, network connections, and database connections
+    # in this case, it ensures that the file is closed after reading, even if an error occurs during the read operation
+    #==========================================================================================================================
+
+    #==========================================================================================================================
+    # `json.load(file)`:
+    #  reads JSON data from a file object and parses it into a Python dictionary
+    # it takes a file object as an argument and reads the entire content of the file
+    # then it converts the JSON formatted string into a corresponding Python data structure
+    #==========================================================================================================================
+    try:
+        with open(SHARED_STATE_FILE, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print("Shared state file not found.")
+        return {}
+    
+
+#==========================================================================================================================
+# TODO: Implement a function to display the shared state
+#==========================================================================================================================
+def display_shared_state():
+    state = read_shared_state()# state will be a dictionary
+    print("Current Shared State:")
+    for key, value in state.items():
+        print(f"  {key}: {value}")
+
+
