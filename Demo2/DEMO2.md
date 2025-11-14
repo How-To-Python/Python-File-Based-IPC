@@ -1,4 +1,4 @@
-# 📝 File-Based IPC Advanced Demonstration
+# 📝 File-Based IPC Enhanced Demonstration
 
 *An enhanced demonstration of **file-based Inter-Process Communication (IPC)** using a shared JSON file with Rich terminal UI and live updates.*
 
@@ -8,6 +8,14 @@
 - **Rich Library**: Terminal formatting and live displays
 - **JSON**: Structured data serialization
 - **Pathlib**: Modern file path handling
+
+## 🎓 Learning Outcomes
+- **Enhanced File Based IPC Patterns**: Structured state management for complex data
+- **Rich Library Usage**: Creating professional terminal UIs
+- **Live Display Techniques**: Updating UIs without flickering
+- **Modular Code Design**: Separating concerns for maintainability
+- **Python Best Practices**: Docstrings, type hints, and clean code
+
 
 ## 🎯 Key Concepts Demonstrated
 - **Shared State** both processes access the same `ipc_state.json` file as their communication channel
@@ -88,17 +96,6 @@
 
 ![Demo2 Screenshot](demo2.png)
 
-## 🔍 Code Highlights
-
-### Live Display (Reader)
-```python
-with Live(layout) as live:
-    while True:
-        state = load_state()
-        if state:
-            update_reader_content(state, layout)
-        sleep(5)
-```
 
 ## 🚀 Advantages Over Demo1
 
@@ -111,22 +108,12 @@ with Live(layout) as live:
 | **Visual Feedback** | Limited colors | Full Rich styling |
 | **Maintainability** | Good for learning | Production-ready structure |
 
-## 🎓 Learning Outcomes
-
-By studying Demo2, you'll learn:
-
-1. **Advanced IPC Patterns**: Structured state management for complex data
-2. **Rich Library Usage**: Creating professional terminal UIs
-3. **Live Display Techniques**: Updating UIs without flickering
-4. **Modular Code Design**: Separating concerns for maintainability
-5. **Python Best Practices**: Docstrings, type hints, and clean code
 
 ## 🔗 Related Resources
-
 - [Rich Documentation](https://rich.readthedocs.io/)
 - [Python JSON Module](https://docs.python.org/3/library/json.html)
 - [Inter-Process Communication Concepts](../Notebooks/InterprocessCommunication.ipynb)
-- [Code Walkthrough](../Notebooks/BasicFileBasedIPC.ipynb)
+
 
 ## 💡 Next Steps
 
@@ -137,6 +124,6 @@ Want to enhance this demo further? Try:
 - Create a command system (clear, status, exit)
 - Add message priorities or tags
 
----
+_______________________________________________________________
 
-**Note**: This demo is for educational purposes to understand IPC concepts. For production use, consider more robust IPC mechanisms like message queues, sockets, or dedicated IPC libraries.
+**Note**: *This demo repository is for educational purposes to understand IPC concepts. For production use, consider more robust IPC mechanisms like message queues, sockets, or dedicated IPC libraries.*

@@ -13,7 +13,12 @@
 - Potential race conditions if both processes write simultaneously
 - Not suitable for high-frequency updates
  
-- [File Based IPC Demo](./Demo/IPC_DEMO_README.md)
+
+### Demonstrations
+- [File Based IPC Basic Demo](./Demo1/DEMO1.md)
+    - Rerender Updates
+- [File Based IPC Enhanced Demo](./Demo2/DEMO2.md)
+    - Live Updates
 - [More about IPC](./Notebooks/InterprocessCommunication.ipynb)
 
-**Note**: This demo repository is for educational purposes to understand IPC concepts. For production use, consider more robust IPC mechanisms like message queues, sockets, or dedicated IPC libraries.
+**Note**: *This demo repository is for educational purposes to understand IPC concepts. For production use, consider more robust IPC mechanisms like message queues, sockets, or dedicated IPC libraries.*

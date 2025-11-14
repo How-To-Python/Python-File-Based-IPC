@@ -8,6 +8,10 @@
 - **JSON**: Structured data serialization
 - **Pathlib**: Modern file path handling
 
+## 🎓 Learning Outcomes
+- **File Based Basic IPC Pattern**: State management
+
+
 ## 🎯 Key Concepts Demonstrated
 - **Shared State** both processes access the same `ipc_state.json` file as their communication channel
 - **Polling** the reader checks the file every 0.5 seconds for updates (see `sleep(5)` in reader.py).
@@ -54,9 +58,16 @@
 ### Step 5: Stop the Processes
 - Press `Ctrl+C` in either terminal to gracefully stop the processes.
 
-![ipc demo image](demo1.png)
+![Demo1 Screenshot](demo1.png)
 
-
+# Issues
 - Entire screen re-renders on update and the screen flickers
 
+
+## 🔗 Related Resources
+- [Inter-Process Communication Concepts](../Notebooks/InterprocessCommunication.ipynb)
+- [Code Walkthrough](../Notebooks/BasicFileBasedIPC.ipynb)
+
+
 **Note**: This demo is for educational purposes to understand IPC concepts. For production use, consider more robust IPC mechanisms like message queues, sockets, or dedicated IPC libraries.
+
