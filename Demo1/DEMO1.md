@@ -29,7 +29,7 @@
 - **Writer** `writer.py`:
     - writes updates to the JSON file when user issues commands
     - the reader picks up the changes on the next read of the JSON file
-- [More About How The Code Works](../Notebooks/FileBasedIPCDemoCode.ipynb)
+- [Code Walkthrough](../Notebooks/FileBasedIPCBasicDemoCode.ipynb)
 
 ### Architecture Overview
 ```
