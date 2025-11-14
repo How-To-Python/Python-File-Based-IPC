@@ -16,6 +16,8 @@
 - **Modular Code Design**: Separating concerns for maintainability
 - **Python Best Practices**: Docstrings, type hints, and clean code
 
+![Demo2 Screenshot](demo2.png)
+
 
 ## 🎯 Key Concepts Demonstrated
 - **Shared State** both processes access the same `ipc_state.json` file as their communication channel
@@ -94,7 +96,7 @@
 ### Step 5: Stop the Processes
 - Press `Ctrl+C` in either terminal to gracefully stop the processes.
 
-![Demo2 Screenshot](demo2.png)
+
 
 
 ## 🚀 Advantages Over Demo1
