@@ -9,7 +9,7 @@ from rich.prompt import Prompt
 from rich.console import Console
 
 from ui.writer_layout import create_writer_layout, show_menu
-from utils.account import create_new_account
+from utils.account import create_new_account, get_accounts, get_account_names, get_new_transaction_details
 
 console = Console()
 
@@ -37,6 +37,31 @@ def add_new_account():
    with open(SHARED_STATE_FILE, "w") as file:
         json.dump(state, file, indent=2)
 
+
+def add_new_transaction():
+    """
+    Add a transaction to an account in the shared state
+    """
+    state = read_shared_state()
+    accounts = get_accounts(state)
+    account_names = get_account_names(accounts)
+
+    transaction_details = get_new_transaction_details(console, account_names)
+    account_name = transaction_details['account_name']
+    amount = transaction_details['amount']
+    description = transaction_details['description']
+
+    for account in accounts:
+        if account['name'] == account_name:
+            account.setdefault('transactions', []).append({
+                "amount": amount,
+                "description": description
+            })
+            break
+
+    with open(SHARED_STATE_FILE, "w") as file:
+        json.dump(state, file, indent=2)
+
 def handle_menu__choice(choice):
     """
     Handle the user's menu choice
@@ -51,9 +76,9 @@ def handle_menu__choice(choice):
     elif choice == "2":
         console.print("\n[yellow] View Accounts! 👋[/yellow]\n")
     elif choice == "3":
-        console.print("\n[yellow]View Accounts! 👋[/yellow]\n")
-    elif choice == "4":
         add_new_account()
+    elif choice == "4":
+        add_new_transaction()
     elif choice == "5":
         console.print("\n[yellow]Showing Current State! 👋[/yellow]\n")
 

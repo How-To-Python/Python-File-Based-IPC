@@ -5,7 +5,13 @@
     {
       "name": "BOA",
       "type": "Checking",
-      "balance": 2500.0
+      "balance": 2500.0,
+      "transactions": [
+        {
+          "amount": 200.0,
+          "description": "Insurance"
+        }
+      ]
     },
     {
       "name": "Chase",
@@ -15,7 +21,13 @@
     {
       "name": "Cash",
       "type": "Cash",
-      "balance": 300.0
+      "balance": 300.0,
+      "transactions": [
+        {
+          "amount": 50.0,
+          "description": "Food"
+        }
+      ]
     },
     {
       "name": "Drew Bank",
