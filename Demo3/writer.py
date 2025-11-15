@@ -37,7 +37,6 @@ def add_new_account():
    with open(SHARED_STATE_FILE, "w") as file:
         json.dump(state, file, indent=2)
 
-
 def add_new_transaction():
     """
     Add a transaction to an account in the shared state

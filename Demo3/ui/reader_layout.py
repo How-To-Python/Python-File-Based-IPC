@@ -3,9 +3,10 @@ from rich.panel import Panel
 from rich.layout import Layout
 from rich.align import Align
 from rich import box
+from rich.columns import Columns
 
 from ui.common_layouts import create_header, create_footer
-from ui.accounts_layout import account_table
+from ui.accounts_layout import account_table, transaction_table
 #=============================================
 # READER LAYOUT FUNCTIONS
 #=============================================
@@ -46,9 +47,13 @@ def update_reader_body(state, layout):
 
     current_view = state.get("current_view", "SUMMARY")
     accounts = state.get("accounts", [])
-    content = account_table(accounts)
+    all_accounts_table = account_table(accounts)
+
+    transactions = [trans for account in accounts for trans in account.get("transactions", [])]
+    transactions_table = transaction_table(transactions)
+    tables_panel = Columns([all_accounts_table, transactions_table], expand=True)
     body = Panel(
-        Align.center(content, vertical="middle"),
+        Align.center(tables_panel, vertical="middle"),
         title=current_view,
         border_style="green",
         box=box.ROUNDED
