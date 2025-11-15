@@ -1,27 +1,14 @@
-
+from rich.table import Table
 from rich.panel import Panel
-from rich.text import Text
 from rich.layout import Layout
 from rich.align import Align
 from rich import box
 
 from ui.common_layouts import create_header, create_footer
+from ui.accounts_layout import account_table
 #=============================================
 # READER LAYOUT FUNCTIONS
 #=============================================
-def create_reader_main_content(content_text):
-    """
-    Creates the reader body area
-    param content_text: str - The text to display in the main content area
-    return: Panel - A Rich Panel object containing the main content
-    """
-    content = Text(content_text, justify="center", style="white")
-    return Panel(
-        Align.center(content, vertical="middle"),
-        title="[bold]MAIN CONTENT[/bold]",
-        border_style="green",
-        box=box.ROUNDED
-    )
 
 def create_reader_layout():
     """
@@ -38,19 +25,35 @@ def create_reader_layout():
 
     header_text = "💸  BUDGET TRACKER CLI 💸"
     color = "magenta"
-    body_text = "Waiting for updates from writer process..."
+    # body_text = "Waiting for updates from writer process..."
     footer_text = "Monitoring: shared_state.json | Use writer.py to send commands | Press Ctrl+C to stop the reader process"
 
-    # .update() method can be used to refresh or change layout components
-    # it comes from rich library's Layout class
+
     layout["header"].update(create_header(header_text, color))
     layout["footer"].update(create_footer(footer_text))
-    layout["body"].update(create_reader_main_content(body_text))
+    # layout["body"].update(create_reader_main_content(body_text))
 
     return layout
 
 
-def update_reader_body(content_text, layout):
+def create_reader_main_content(state):
+    """
+    Creates the reader body area
+    param content_text: str - The text to display in the main content area
+    return: Panel - A Rich Panel object containing the main content
+    """
+    current_view = state.get("current_view", "SUMMARY")
+    accounts = state.get("accounts", [])
+    content = account_table(accounts)
+    return Panel(
+        Align.center(content, vertical="middle"),
+        title=current_view,
+        border_style="green",
+        box=box.ROUNDED
+    )
+
+
+def update_reader_body(state, layout):
     """
     Update the reader's body with new content and state
     param content_text: str - The text to display in the main content area
@@ -58,7 +61,7 @@ def update_reader_body(content_text, layout):
     return: layout - The updated Rich Layout object
     """
 
-    body = create_reader_main_content(content_text)
+    body = create_reader_main_content(state)
     return layout["body"].update(body)
 
 

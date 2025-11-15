@@ -1,9 +1,16 @@
 {
   "current_view": "SUMMARY",
   "content": "Welcome To Your Budget Tracker!",
-  "accounts": {
-    "name": "Chase",
-    "type": "Checking",
-    "balance": 2500.0
-  }
+  "accounts": [
+    {
+      "name": "BOA",
+      "type": "Checking",
+      "balance": 2500.0
+    },
+    {
+      "name": "Chase",
+      "type": "Savings",
+      "balance": 1000.0
+    }
+  ]
 }

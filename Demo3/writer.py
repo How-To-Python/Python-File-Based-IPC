@@ -9,7 +9,7 @@ from rich.prompt import Prompt
 from rich.console import Console
 
 from ui.writer_layout import create_writer_layout, update_writer_layout, create_menu
-from ui.account import new_account_prompt
+from Demo3.utils.account import new_account_prompt
 
 console = Console()
 
@@ -26,6 +26,16 @@ def read_shared_state():
     except FileNotFoundError:
         print("Shared state file not found.")
     
+
+
+
+
+
+
+
+
+
+
 def add_account():
    """
     Prompt user for new account details and add to shared state
@@ -34,8 +44,7 @@ def add_account():
 
 # Load existing state
    state = read_shared_state()
-
-   state["accounts"] = new_account_details
+   state["accounts"].append(new_account_details)
 
    with open(SHARED_STATE_FILE, "w") as file:
         json.dump(state, file, indent=2)
@@ -54,9 +63,9 @@ def show_choice(choice):
     elif choice == "1":
         console.print("\n[yellow]Switching View! 👋[/yellow]\n")
     elif choice == "2":
-        console.print("\n[yellow]Updating Content! 👋[/yellow]\n")
+        console.print("\n[yellow] View Accounts! 👋[/yellow]\n")
     elif choice == "3":
-        console.print("\n[yellow]Adding Transaction Data! 👋[/yellow]\n")
+        console.print("\n[yellow]View Accounts! 👋[/yellow]\n")
     elif choice == "4":
         add_account()
     elif choice == "5":
@@ -65,7 +74,7 @@ def show_choice(choice):
 def main():
     """
     Main function to run the writer process
-    
+
     """
     create_writer_layout(console)
         # Prompt the user to ensure the reader.py is running
