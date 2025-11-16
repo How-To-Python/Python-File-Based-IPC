@@ -3,17 +3,21 @@
   "accounts": [
     {
       "name": "BOA",
-      "type": "Checking",
-      "balance": 10000.0
+      "type": "Savings",
+      "balance": 1000000.0
     },
     {
-      "name": "Cash",
-      "type": "Cash",
-      "balance": 400.0,
+      "name": "Chase",
+      "type": "Checking",
+      "balance": 14750.0,
       "transactions": [
         {
           "amount": 200.0,
           "description": "Food"
+        },
+        {
+          "amount": 50.0,
+          "description": "Gas"
         }
       ]
     }
