@@ -22,6 +22,17 @@
           "description": "Food"
         }
       ]
+    },
+    {
+      "name": "Cash",
+      "type": "Cash",
+      "balance": 250.0,
+      "transactions": [
+        {
+          "amount": 50.0,
+          "description": "Gas"
+        }
+      ]
     }
   ]
 }

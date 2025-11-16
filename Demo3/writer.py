@@ -8,9 +8,8 @@ from pathlib import Path
 from rich.prompt import Prompt
 from rich.console import Console
 
-from ui.writer_layout import create_writer_layout, show_menu
-from utils.account import create_new_account, get_accounts, get_account_names
-from utils.transaction import create_new_transaction
+from ui.writer_layout import create_writer_layout, show_menu, get_new_account_details, get_new_transaction_details
+from utils.account import get_accounts, get_account_names
 
 
 console = Console()
@@ -33,7 +32,7 @@ def add_new_account():
     Adds a new account to the shared state
    """
    state = read_shared_state()
-   new_account_details = create_new_account(console)
+   new_account_details = get_new_account_details(console)
    state["accounts"].append(new_account_details)
 
    with open(SHARED_STATE_FILE, "w") as file:
@@ -47,7 +46,7 @@ def add_new_transaction():
     accounts = get_accounts(state)
     account_names = get_account_names(accounts)
 
-    transaction_details = create_new_transaction(console, account_names, state)
+    transaction_details = get_new_transaction_details(console, account_names, state)
     account_name = transaction_details['account_name']
     amount = transaction_details['amount']
     description = transaction_details['description']
@@ -69,19 +68,26 @@ def handle_menu__choice(choice):
     param choice: str - The user's menu choice
     return: int - 0 to exit, else None
     """
-    if choice == "0":
-        console.print("\n[yellow]Exiting Command Client. Goodbye! 👋[/yellow]\n")
-        return 0
-    elif choice == "1":
-        console.print("\n[yellow]Switching View! 👋[/yellow]\n")
-    elif choice == "2":
-        console.print("\n[yellow] View Accounts! 👋[/yellow]\n")
-    elif choice == "3":
-        add_new_account()
-    elif choice == "4":
-        add_new_transaction()
-    elif choice == "5":
-        console.print("\n[yellow]Showing Current State! 👋[/yellow]\n")
+    match choice:
+        case "0":
+            console.print("\n[yellow]Exiting Command Client. Goodbye! 👋[/yellow]\n")
+            return 0
+        case "1":
+            add_new_account()
+        case "2":
+            add_new_transaction()
+        case "3":
+            console.print("\n[yellow]Viewing Accounts! 👋[/yellow]\n")
+        case "4":
+            console.print("\n[yellow]Viewing Transactions! 👋[/yellow]\n")
+        case "5":
+            console.print("\n[yellow]Switching View! 👋[/yellow]\n")
+        case "6":
+            console.print("\n[yellow]Updating Content! 👋[/yellow]\n")
+        case "7":
+            console.print("\n[yellow]Showing Current State! 👋[/yellow]\n")
+        case _:
+            console.print("[red]❌Invalid choice. Please try again.[/red]")
 
 def main():
     """
