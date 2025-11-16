@@ -1,5 +1,10 @@
-from ui.common_layouts import create_header, create_footer
 from rich.prompt import Prompt
+from rich.text import Text
+from rich.table import Table
+from rich import box
+
+from ui.common_layouts import create_header, create_footer
+
 
 #=============================================
 # WRITER LAYOUT FUNCTIONS
@@ -27,16 +32,25 @@ def update_writer_layout(console, new_message):
     color = "yellow"
     console.print(create_header(header_text, color))
 
+def create_menu():
+
+    table = Table(title="Available Commands", box=box.SIMPLE_HEAVY)
+
+    table.add_column("Command", style="green")
+    table.add_column("Description")
+    table.add_row("1", "Switch View")
+    table.add_row("2", "Update Content")
+    table.add_row("3", "Add New Account")
+    table.add_row("4", "Add New Transaction")
+    table.add_row("5", "Show Current State")
+    table.add_row("0", "Exit")
+    
+    return table
+
 def show_menu(console):
-    console.print()
-    console.print("[yellow]Available Commands:[/yellow]")
-    console.print("  [green]1[/green] - Switch View")
-    console.print("  [green]2[/green] - Update Content")
-    console.print("  [green]3[/green] - Add New Account")
-    console.print("  [green]4[/green] - Add New Transaction")
-    console.print("  [green]5[/green] - Show Current State")
-    console.print("  [green]0[/green] - Exit")
-    console.print()
+    menu = create_menu()
+
+    console.print(menu)
     choice = Prompt.ask(
             "[green]Enter command[/green]",
             choices=["0", "1", "2", "3", "4", "5"]

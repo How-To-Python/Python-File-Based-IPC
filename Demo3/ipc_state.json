@@ -11,6 +11,17 @@
           "description": "Insurance"
         }
       ]
+    },
+    {
+      "name": "Chase",
+      "type": "Savings",
+      "balance": 5400.0,
+      "transactions": [
+        {
+          "amount": 200.0,
+          "description": "Food"
+        }
+      ]
     }
   ]
 }
