@@ -47,7 +47,13 @@ def new_account(console):
     else:
         console.print("[red]Failed to add new account.[/red]")
 
-
+# Option 3: Add New Transaction
+def new_transaction(console):
+    new_transaction_details = add_new_transaction(read_shared_state(), console)
+    if new_transaction_details:
+        write_shared_state(new_transaction_details)
+    else:
+        console.print("[red]Failed to add new transaction.[/red]")
 
 def change_current_view(new_view):
     """
@@ -76,11 +82,7 @@ def handle_menu__choice(choice):
         case "2":# Add New Account
             new_account(console)
         case "3":# Add New Transaction
-            new_transaction = add_new_transaction(read_shared_state(), console)
-            if new_transaction:
-                write_shared_state(new_transaction)
-            else:
-                console.print("[red]Failed to add new transaction.[/red]")
+            new_transaction(console)
         case "4":# View Accounts
             console.print("\n[yellow]Viewing Accounts! 👋[/yellow]\n")
             change_current_view("ACCOUNTS")
