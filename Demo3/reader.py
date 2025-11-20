@@ -8,7 +8,7 @@ from time import sleep
 from rich.console import Console
 from rich.live import Live
 
-from ui.reader_layout import create_reader_layout, switch_view_content
+from ui.reader_layout import create_reader_layout, show_current_view
 
 console = Console()
 SHARED_STATE_FILE = Path(__file__).parent / "ipc_state.json"
@@ -65,7 +65,7 @@ def main():
             while True:
                 state = load_state()
                 if state:
-                    switch_view_content(state, layout)
+                    show_current_view(state, layout)
                 sleep(5)
 
     except KeyboardInterrupt:

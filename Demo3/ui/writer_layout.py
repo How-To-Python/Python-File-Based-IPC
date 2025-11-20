@@ -1,6 +1,5 @@
 from ast import If
 from rich.prompt import Prompt
-from rich.text import Text
 from rich.table import Table
 from rich import box
 

@@ -2,7 +2,7 @@ from rich.text import Text
 from rich.table import Table
 from rich import box
 
-def account_table(accounts):
+def create_account_table(accounts):
     """
     Create a Rich Table to display account information
     param accounts: list - A list of account dictionaries

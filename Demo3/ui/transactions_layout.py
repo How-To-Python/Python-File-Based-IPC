@@ -2,7 +2,7 @@ from rich.text import Text
 from rich.table import Table
 from rich import box
 
-def transaction_table(transactions):
+def create_transaction_table(transactions):
     """
     Create a Rich Table to display transaction information
     param transactions: list - A list of transaction dictionaries
