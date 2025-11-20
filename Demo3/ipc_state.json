@@ -16,6 +16,11 @@
       "name": "Cash",
       "type": "Cash",
       "balance": 1500.0
+    },
+    {
+      "name": "Chase",
+      "type": "Checking",
+      "balance": 3000.0
     }
   ]
 }

@@ -36,6 +36,19 @@ def write_shared_state(state):
     with open(SHARED_STATE_FILE, "w") as file:
         json.dump(state, file, indent=2)
 
+
+# Menu Handling Functions
+
+# Option 2 : Add New Account
+def new_account(console):
+    new_account_details = add_new_account(read_shared_state(), console)
+    if new_account_details:
+        write_shared_state(new_account_details)
+    else:
+        console.print("[red]Failed to add new account.[/red]")
+
+
+
 def change_current_view(new_view):
     """
     Change the current view in the shared state.
@@ -61,11 +74,7 @@ def handle_menu__choice(choice):
             console.print("\n[yellow]Viewing Summary! 👋[/yellow]\n")
             change_current_view("SUMMARY")
         case "2":# Add New Account
-            new_account = add_new_account(read_shared_state(), console)
-            if new_account:
-                write_shared_state(new_account)
-            else:
-                console.print("[red]Failed to add new account.[/red]")
+            new_account(console)
         case "3":# Add New Transaction
             new_transaction = add_new_transaction(read_shared_state(), console)
             if new_transaction:
