@@ -74,6 +74,8 @@ def switch_view_content(state, layout):
         return summary_view_content(state, layout)
     elif current_view == "ACCOUNTS":
         return account_view_content(state, layout)
+    elif current_view == "TRANSACTIONS":
+        return transaction_view_content(state, layout)
     else:
         return layout
 

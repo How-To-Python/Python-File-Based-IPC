@@ -55,7 +55,7 @@ def show_menu(console):
 
     choice = Prompt.ask(
             "[green]Enter command[/green]",
-            choices=["0", "1", "2", "3", "4"]
+            choices=["0", "1", "2", "3", "4", "5"]
         )
     
     return choice
