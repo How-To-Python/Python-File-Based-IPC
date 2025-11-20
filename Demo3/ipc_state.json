@@ -20,11 +20,15 @@
     {
       "name": "Chase",
       "type": "Checking",
-      "balance": 2800.0,
+      "balance": 2500.0,
       "transactions": [
         {
           "amount": 200.0,
           "description": "Food"
+        },
+        {
+          "amount": 300.0,
+          "description": "Insurance"
         }
       ]
     }

@@ -33,14 +33,12 @@ def update_writer_layout(console, new_message):
     console.print(create_header(header_text, color))
 
 def create_menu():
-
     table = Table(title="Available Commands", box=box.SIMPLE_HEAVY)
-
     table.add_column("Command", style="green")
     table.add_column("Description")
-    table.add_row("1", "View Summary")
-    table.add_row("2", "Add New Account")
-    table.add_row("3", "Add New Transaction")
+    table.add_row("1", "Add New Account")
+    table.add_row("2", "Add New Transaction")
+    table.add_row("3", "View Summary")
     table.add_row("4", "View Accounts")
     table.add_row("5", "View Transactions")
     # table.add_row("6", "Update Content")

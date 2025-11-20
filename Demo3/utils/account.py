@@ -1,39 +1,14 @@
 """Utility functions for account management"""
 from ui.writer_layout import get_new_account_details
 
-
-
-# this function is used in writer.py to add a new account
 def add_new_account(state, console):
    """
     Adds a new account to the shared state
     param state: dict - The current shared state
     param console: Console - The Rich Console object to use for input/output
+    return: dict - The updated shared state with the new account added
    """
-    # Get new account details from user
    new_account_details = get_new_account_details(console)
-
-   # Add new account to state
    state["accounts"].append(new_account_details)
    return state
 
-def get_accounts(state):
-    """
-    Get the list of accounts from the shared state
-    return: list - A list of account dictionaries
-    """
-
-    # Get list of accounts
-    accounts = state.get("accounts", [])
-    return accounts
-
-def get_account_names(accounts):
-    """
-    Get a list of account names from the shared state
-    return: list - A list of account names
-    """
-
-    # Get list of account names
-    accounts_names = [account['name'] for account in accounts]
-
-    return accounts_names
