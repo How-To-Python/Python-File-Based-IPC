@@ -4,8 +4,6 @@
 import json
 from pathlib import Path
 
-
-from rich.prompt import Prompt
 from rich.console import Console
 
 from ui.writer_layout import create_writer_layout, show_menu, choose_account
@@ -67,8 +65,8 @@ def view_account_transactions(console):
     transactions = account.get("transactions", [])
     console.print(f"\n[yellow]Transactions for account '{account['name']}':[/yellow]")
     if transactions:
-        for idx, transaction in enumerate(transactions, start=1):
-            console.print(f"{idx}. Amount: {transaction['amount']}, Description: {transaction['description']}")
+        for i, transaction in enumerate(transactions, start=1):
+            console.print(f"{i}. Amount: {transaction['amount']}, Description: {transaction['description']}")
     else:
         console.print("[red]No transactions available for this account.[/red]")
 
