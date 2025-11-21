@@ -37,9 +37,9 @@ def create_menu():
     table.add_column("Description")
     table.add_row("1", "Add New Account")
     table.add_row("2", "Add New Transaction")
-    table.add_row("3", "View Summary")
-    table.add_row("4", "View Accounts")
-    table.add_row("5", "View Transactions")
+    table.add_row("3", "Change View")
+    # table.add_row("4", "View Accounts")
+    # table.add_row("5", "View Transactions")
     # table.add_row("6", "Update Content")
     # table.add_row("7", "Show Current State")
     table.add_row("0", "Exit")
@@ -52,7 +52,7 @@ def show_menu(console):
 
     choice = Prompt.ask(
             "[green]Enter command[/green]",
-            choices=["0", "1", "2", "3", "4", "5"]
+            choices=["0", "1", "2", "3"]
         )
     
     return choice

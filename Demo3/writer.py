@@ -43,6 +43,10 @@ def write_shared_state(state):
 
 # Option 1 : Add New Account
 def new_account(console):
+    """
+    Prompt user for new account details and write to shared state.
+    param console: Console - The Rich Console object to use for output
+    """
     new_account_details = add_new_account(read_shared_state(), console)
     if new_account_details:
         write_shared_state(new_account_details)
