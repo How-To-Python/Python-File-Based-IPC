@@ -45,7 +45,7 @@ def create_transaction_table(accounts):
     table = Table(title="Transactions Overview", box=box.SIMPLE_HEAVY)
 
     table.add_column("Account Name", style="cyan", no_wrap=True)
-    table.add_column("Amount", style="magenta")
+    table.add_column("Amount", style="red")
     table.add_column("Description", style="green")
 
     transactions_with_account_names = [
