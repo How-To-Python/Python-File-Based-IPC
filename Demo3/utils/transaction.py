@@ -1,6 +1,6 @@
 """Utility functions for handling transactions."""
 
-from ui.writer_layout import get_new_transaction_details
+from ui.transactions_layout import get_new_transaction_details
 
 def add_new_transaction(state, console):
     """
@@ -45,23 +45,3 @@ def subtract_from_balance(account_name, amount, state):
    for account in accounts:
        if account['name'] == account_name:
            account['balance'] -= amount
-
-
-def get_all_transactions(accounts, create_transaction_table):
-    """
-    Get all transactions from all accounts
-    param state: dict - The current state dictionary
-    return: list - List of all transactions with account names
-    """
-
-     # get all transactions and the account name they belong to
-    transactions_with_account_names = [
-        {**trans, "account_name": account.get("name", "Unknown")}
-        for account in accounts
-        for trans in account.get("transactions", [])
-    ]
-
-    # create a table for all transactions
-    transactions_table = create_transaction_table(transactions_with_account_names)
-
-    return transactions_table

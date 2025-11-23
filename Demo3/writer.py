@@ -6,7 +6,7 @@ from pathlib import Path
 
 from rich.console import Console
 
-from ui.writer_layout import create_writer_layout, show_menu, choose_view
+from ui.writer_layout import create_writer_layout, show_main_menu, show_view_choice_menu
 from utils.account import add_new_account
 from utils.transaction import add_new_transaction
 
@@ -88,7 +88,7 @@ def handle_menu__choice(choice):
         case "2":# Add New Transaction
             new_transaction(console)
         case "3": # Change View
-            new_view = choose_view(console)
+            new_view = show_view_choice_menu(console)
             change_current_view(new_view)
         case _:
             console.print("[red]❌Invalid choice. Please try again.[/red]")
@@ -108,8 +108,8 @@ def main():
 
 
     while True:
-        
-        choice = show_menu(console)
+        console.print("\n")
+        choice = show_main_menu(console)
         result = handle_menu__choice(choice)
 
         if result == 0:

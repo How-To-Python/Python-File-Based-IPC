@@ -1,5 +1,5 @@
 """Utility functions for account management"""
-from ui.writer_layout import get_new_account_details
+from ui.accounts_layout import get_new_account_details
 
 def add_new_account(state, console):
    """

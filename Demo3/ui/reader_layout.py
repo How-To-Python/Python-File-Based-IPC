@@ -1,3 +1,4 @@
+from xml.dom.minidom import Text
 from rich.table import Table
 from rich.panel import Panel
 from rich.layout import Layout
@@ -8,7 +9,6 @@ from rich.columns import Columns
 from ui.common_layouts import create_header, create_footer
 from ui.accounts_layout import create_account_table
 from ui.transactions_layout import create_transaction_table
-from utils.transaction import get_all_transactions
 #=============================================
 # READER LAYOUT FUNCTIONS
 #=============================================
@@ -52,9 +52,9 @@ def show_current_view(state, layout):
     if current_view == "SUMMARY":
         return summary_view_panel(state, layout)
     elif current_view == "ACCOUNTS":
-        return account_view_panel(state, layout)
+        return create_panel(state, create_account_table, layout)
     elif current_view == "TRANSACTIONS":
-        return transaction_view_panel(state, layout)
+        return create_panel(state, create_transaction_table, layout)
     else:
         return layout
 
@@ -75,9 +75,8 @@ def summary_view_panel(state, layout):
     # account table with all accounts
     all_accounts_table = create_account_table(accounts)
 
-    # # transaction table with all transactions from all accounts
-    # transactions = [trans for account in accounts for trans in account.get("transactions", [])]
-    transactions_table = get_all_transactions(accounts, create_transaction_table)
+    # transaction table with all transactions from all accounts
+    transactions_table = create_transaction_table(accounts)
 
     # add both tables side by side in a columns panel
     tables_panel = Columns([all_accounts_table, transactions_table])
@@ -89,29 +88,57 @@ def summary_view_panel(state, layout):
     )
     return layout["body"].update(body)
 
-# this gets all transactions from all accounts along with the account name they belong to
-def transaction_view_panel(state, layout):
+def create_panel(state, func, layout):
     """
-    Update the reader's body with summary view content based on the current state
+    Update the reader's body with content based on the current state and provided function
     param state: dict - The current state dictionary
+    param func: function - The function to create the table (either account or transaction)
     param layout: Layout - The Rich Layout object to update
     return: layout - The updated Rich Layout object
     """
-    current_view = state.get("current_view", None)
 
+
+    current_view = state.get("current_view", None)
     accounts = state.get("accounts", [])
 
-    transactions_table = get_all_transactions(accounts, create_transaction_table)
-    
-    body = Panel(
-        Align.center(transactions_table, vertical="middle"),
-        title=current_view,
-        border_style="green",
-        box=box.ROUNDED
-    )
-    return layout["body"].update(body)
+    if not accounts:
+        content = Text("No accounts available.", justify="center", style="white")
+        return content
+    else:
+        table = func(accounts)
+        body = Panel(
+            Align.center(table, vertical="middle"),
+            title=current_view,
+            border_style="green",
+            box=box.ROUNDED
+        )
+        return layout["body"].update(body)
 
-def account_view_panel(state, layout):
+
+
+# # this gets all transactions from all accounts along with the account name they belong to
+# def transaction_view_panel(state, layout):
+#     """
+#     Update the reader's body with summary view content based on the current state
+#     param state: dict - The current state dictionary
+#     param layout: Layout - The Rich Layout object to update
+#     return: layout - The updated Rich Layout object
+#     """
+#     current_view = state.get("current_view", None)
+
+#     accounts = state.get("accounts", [])
+
+#     transactions_table = get_all_transactions(accounts, create_transaction_table)
+    
+#     body = Panel(
+#         Align.center(transactions_table, vertical="middle"),
+#         title=current_view,
+#         border_style="green",
+#         box=box.ROUNDED
+#     )
+#     return layout["body"].update(body)
+
+# def account_view_panel(state, layout):
     """
     Update the reader's body with summary view content based on the current state
     param state: dict - The current state dictionary
