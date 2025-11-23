@@ -4,30 +4,17 @@
     {
       "name": "BOA",
       "type": "Savings",
-      "balance": 11000.0,
-      "transactions": [
-        {
-          "amount": 1000.0,
-          "description": "Rent"
-        },
-        {
-          "amount": 2000.0,
-          "description": "Investment"
-        }
-      ]
+      "balance": 20000.0
     },
     {
       "name": "Chase",
       "type": "Checking",
-      "balance": 2750.0,
+      "balance": 1500.0,
       "transactions": [
         {
-          "amount": 200.0,
-          "description": "Food"
-        },
-        {
-          "amount": 50.0,
-          "description": "Gas"
+          "transaction_type": "Expense",
+          "amount": 1500.0,
+          "description": "Rent"
         }
       ]
     },

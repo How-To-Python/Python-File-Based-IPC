@@ -35,6 +35,7 @@ def add_new_transaction(state, console):
     for account in accounts:
         if account['name'] == account_name:
             account.setdefault('transactions', []).append({
+                "transaction_type": trans_type,
                 "amount": amount,
                 "description": description
             })

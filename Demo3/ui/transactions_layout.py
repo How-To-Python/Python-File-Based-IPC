@@ -50,6 +50,7 @@ def create_transaction_table(accounts):
     table = Table(title="Transactions Overview", box=box.SIMPLE_HEAVY)
 
     table.add_column("Account Name", style="cyan", no_wrap=True)
+    table.add_column("Transaction Type", style="magenta")
     table.add_column("Amount", style="red")
     table.add_column("Description", style="green")
 
@@ -61,9 +62,9 @@ def create_transaction_table(accounts):
 
     for transaction in transactions_with_account_names:
         account_name = transaction.get("account_name", "Unknown")
+        trans_type = transaction.get("transaction_type", "Unknown")
         amount = f"${transaction.get("amount", 0.00):.2f}"
         description = transaction.get("description", "")
 
-        table.add_row(account_name, amount, description)
-
+        table.add_row(account_name, trans_type, amount, description)
     return table

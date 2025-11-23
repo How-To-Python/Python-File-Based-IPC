@@ -25,7 +25,7 @@ def create_reader_layout():
     #split the layout into header, body, and footer
     layout.split_column(
         Layout(name="header", size=3),
-        Layout(name="body", size=16),
+        Layout(name="body", size=25),
         Layout(name="footer", size=3)
     )
 
