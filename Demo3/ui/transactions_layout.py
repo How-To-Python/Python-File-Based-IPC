@@ -51,7 +51,8 @@ def create_transaction_table(accounts):
 
     table.add_column("Account Name", style="cyan", no_wrap=True)
     table.add_column("Transaction Type", style="magenta")
-    table.add_column("Amount", style="red")
+    
+    table.add_column("Amount")
     table.add_column("Description", style="green")
 
     transactions_with_account_names = [
@@ -65,6 +66,13 @@ def create_transaction_table(accounts):
         trans_type = transaction.get("transaction_type", "Unknown")
         amount = f"${transaction.get("amount", 0.00):.2f}"
         description = transaction.get("description", "")
+
+        if trans_type == "Income":
+            amount = f"[green]{amount}[/green]"
+        elif trans_type == "Expense":
+            amount = f"[red]{amount}[/red]"
+        elif trans_type == "Transfer":
+            amount = f"[yellow]{amount}[/yellow]"
 
         table.add_row(account_name, trans_type, amount, description)
     return table
