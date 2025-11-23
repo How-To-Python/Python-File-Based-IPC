@@ -42,7 +42,7 @@ def create_reader_layout():
 
 def show_current_view(state, layout):
     """
-    Update the reader's body based on the current view in state
+    Update the reader's body with content based on the current view in state
     param state: dict - The current state dictionary
     param layout: Layout - The Rich Layout object to update
     return: layout - The updated Rich Layout object
@@ -50,7 +50,7 @@ def show_current_view(state, layout):
 
     current_view = state.get("current_view", "SUMMARY")
     if current_view == "SUMMARY":
-        return summary_view_panel(state, layout)
+        return create_panel(state, create_summary_view, layout)
     elif current_view == "ACCOUNTS":
         return create_panel(state, create_account_table, layout)
     elif current_view == "TRANSACTIONS":
@@ -58,20 +58,12 @@ def show_current_view(state, layout):
     else:
         return layout
 
-def summary_view_panel(state, layout):
+def create_summary_view(accounts):
     """
-    Update the reader's body with summary view content based on the current state
-    param state: dict - The current state dictionary
-    param layout: Layout - The Rich Layout object to update
-    return: layout - The updated Rich Layout object
+    Create a summary view with both accounts and transactions tables
+    param accounts: list - List of account dictionaries
+    return: Panel - A Rich Panel object containing both tables
     """
-
-    # get the current view from state to display in the title
-    current_view = state.get("current_view", None)
-
-    # get all accounts from state to access each account and their transactions
-    accounts = state.get("accounts", [])
-
     # account table with all accounts
     all_accounts_table = create_account_table(accounts)
 
@@ -80,13 +72,8 @@ def summary_view_panel(state, layout):
 
     # add both tables side by side in a columns panel
     tables_panel = Columns([all_accounts_table, transactions_table])
-    body = Panel(
-        Align.center(tables_panel, vertical="middle"),
-        title=current_view,
-        border_style="green",
-        box=box.ROUNDED
-    )
-    return layout["body"].update(body)
+
+    return tables_panel
 
 def create_panel(state, func, layout):
     """
@@ -104,6 +91,15 @@ def create_panel(state, func, layout):
     if not accounts:
         content = Text("No accounts available.", justify="center", style="white")
         return content
+    elif func == create_summary_view:
+        tables_panel = create_summary_view(accounts)
+        body = Panel(
+            Align.center(tables_panel, vertical="middle"),
+            title=current_view,
+            border_style="green",
+            box=box.ROUNDED
+        )
+        return layout["body"].update(body)
     else:
         table = func(accounts)
         body = Panel(
@@ -116,29 +112,7 @@ def create_panel(state, func, layout):
 
 
 
-# # this gets all transactions from all accounts along with the account name they belong to
-# def transaction_view_panel(state, layout):
-#     """
-#     Update the reader's body with summary view content based on the current state
-#     param state: dict - The current state dictionary
-#     param layout: Layout - The Rich Layout object to update
-#     return: layout - The updated Rich Layout object
-#     """
-#     current_view = state.get("current_view", None)
 
-#     accounts = state.get("accounts", [])
-
-#     transactions_table = get_all_transactions(accounts, create_transaction_table)
-    
-#     body = Panel(
-#         Align.center(transactions_table, vertical="middle"),
-#         title=current_view,
-#         border_style="green",
-#         box=box.ROUNDED
-#     )
-#     return layout["body"].update(body)
-
-# def account_view_panel(state, layout):
     """
     Update the reader's body with summary view content based on the current state
     param state: dict - The current state dictionary

@@ -8,6 +8,7 @@ from rich import box
 # Writer Layout Specific Components
 # Used by the writer layout only
 #=============================================================================
+
 def get_new_account_details(console):
     """
     Prompt user for new account details and return as a dictionary.
@@ -36,8 +37,6 @@ def get_new_account_details(console):
 
     console.print(f"[bold green]Account '{account_name}' added successfully![/bold green]\n")
     return new_account_details
-
-
 
 
 #=============================================================================
