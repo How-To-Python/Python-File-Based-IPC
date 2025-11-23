@@ -18,11 +18,16 @@ def get_new_transaction_details(account_names, console):
     """
     console.print("\n[bold green]Add Transaction[/bold green]")
     account_name = Prompt.ask("Select Account", choices=account_names)
+    trans_type = Prompt.ask(
+            "[bold green]Transaction Type[/bold green]",
+            choices=["Income", "Expense", "Transfer"]
+        )
     amount = float(Prompt.ask("Enter Amount"))
     description = Prompt.ask("Enter Description")
 
     transaction_details = {
         "account_name": account_name,
+        "transaction_type": trans_type,
         "amount": amount,
         "description": description
     }

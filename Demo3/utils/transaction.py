@@ -20,10 +20,17 @@ def add_new_transaction(state, console):
     
     account_name = transaction_details['account_name']
 
+    trans_type = transaction_details['transaction_type']
     amount = transaction_details['amount']
     description = transaction_details['description']
 
-    subtract_from_balance(account_name, amount, state)
+    if trans_type == "Expense":
+        subtract_from_balance(account_name, amount, state)
+    elif trans_type == "Income":
+        add_to_balance(account_name, amount, state)
+    elif trans_type == "Transfer":
+        console.print("[yellow]Transfer type selected. Functionality not yet implemented.[/yellow]\n")
+
 
     for account in accounts:
         if account['name'] == account_name:
@@ -45,3 +52,15 @@ def subtract_from_balance(account_name, amount, state):
    for account in accounts:
        if account['name'] == account_name:
            account['balance'] -= amount
+
+def add_to_balance(account_name, amount, state):
+   """
+   Add the transaction amount to the account balance
+   param account_name: str - The name of the account
+   param amount: float - The transaction amount
+   param state: dict - The current state dictionary
+   """
+   accounts = state.get("accounts", [])
+   for account in accounts:
+       if account['name'] == account_name:
+           account['balance'] += amount
