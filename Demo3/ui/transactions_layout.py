@@ -48,10 +48,8 @@ def create_transaction_table(accounts):
     return: Table - A Rich Table object containing the transaction data
     """
     table = Table(title="Transactions Overview", box=box.SIMPLE_HEAVY)
-
     table.add_column("Account Name", style="cyan", no_wrap=True)
     table.add_column("Transaction Type", style="magenta")
-    
     table.add_column("Amount")
     table.add_column("Description", style="green")
 
