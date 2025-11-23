@@ -75,6 +75,8 @@ def create_summary_view(accounts):
 
     return tables_panel
 
+
+# high-order function to create panel based on state and function
 def create_panel(state, func, layout):
     """
     Update the reader's body with content based on the current state and provided function
